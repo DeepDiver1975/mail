@@ -53,7 +53,7 @@ define(function(require) {
 	Marionette.TemplateCache.prototype.compileTemplate = function(rawTemplate) {
 		return Handlebars.compile(rawTemplate);
 	};
-	Marionette.ItemView.prototype.modelEvents = {change: 'render'};
+	Marionette.View.prototype.modelEvents = {change: 'render'};
 	Marionette.CompositeView.prototype.modelEvents = {change: 'render'};
 
 	var Mail = Marionette.Application.extend({

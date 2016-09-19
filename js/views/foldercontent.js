@@ -73,7 +73,7 @@ define(function(require) {
 			this.listenTo(Radio.ui, 'message:loading', this.onMessageLoading);
 		},
 		onRender: function() {
-			this.messages.show(new MessagesView({
+			this.showChildView('messages', new MessagesView({
 				collection: this.folder.messages,
 				searchQuery: this.searchQuery
 			}));
@@ -83,7 +83,7 @@ define(function(require) {
 			Radio.ui.trigger('composer:events:undelegate');
 
 			var messageModel = new Backbone.Model(message);
-			this.message.show(new MessageView({
+			this.showChildView('message', new MessageView({
 				account: this.account,
 				folder: this.folder,
 				model: messageModel
@@ -93,7 +93,7 @@ define(function(require) {
 			Radio.ui.trigger('messagesview:messageflag:set', message.id, 'unseen', false);
 		},
 		onShowError: function(errorMessage) {
-			this.message.show(new ErrorView({
+			this.showChildView('message', new ErrorView({
 				text: errorMessage
 			}));
 			this.detailView = DetailView.ERROR;
@@ -111,7 +111,7 @@ define(function(require) {
 			}
 
 			// setup composer view
-			this.message.show(new ComposerView({
+			this.showChildView('message', new ComposerView({
 				accounts: require('state').accounts,
 				data: data
 			}));
@@ -155,7 +155,7 @@ define(function(require) {
 			}
 		},
 		onMessageLoading: function(text) {
-			this.message.show(new LoadingView({
+			this.showChildView('message', new LoadingView({
 				text: text
 			}));
 		},

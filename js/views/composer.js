@@ -525,7 +525,7 @@ define(function(require) {
 				$('.mail-account').val(alias.id);
 			}
 		},
-		onShow: function() {
+		onRender: function() {
 			this.defaultMailSelect();
 		}
 	});

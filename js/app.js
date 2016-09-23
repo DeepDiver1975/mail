@@ -48,6 +48,7 @@ define(function(require) {
 	require('service/messageservice');
 	require('service/aliasesservice');
 	require('notification');
+	require('util/notificationhandler');
 
 	// Set marionette defaults
 	Marionette.TemplateCache.prototype.compileTemplate = function(rawTemplate) {

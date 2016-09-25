@@ -116,7 +116,7 @@ define(function(require) {
 				data: data
 			}));
 			this.detailView = DetailView.COMPOSER;
-			this.composer = this.message.currentView;
+			this.composer = this.getChildView('message');
 
 			if (data && data.hasHtmlBody) {
 				Radio.ui.trigger('error:show', t('mail', 'Opening HTML drafts is not supported yet.'));

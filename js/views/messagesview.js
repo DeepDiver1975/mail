@@ -20,6 +20,7 @@
 define(function(require) {
 	'use strict';
 
+	var _ = require('underscore');
 	var $ = require('jquery');
 	var Backbone = require('backbone');
 	var Handlebars = require('handlebars');
@@ -40,12 +41,13 @@ define(function(require) {
 		loadingMore: false,
 		reloaded: false,
 		events: {
-			'wheel': 'onScroll',
+			'wheel': 'onScroll'
 		},
 		initialize: function(options) {
 			this.searchQuery = options.searchQuery;
 
 			var _this = this;
+			this.on('dom:refresh', this._bindScrollEvents);
 			Radio.ui.reply('messagesview:collection', function() {
 				return _this.collection;
 			});
@@ -56,7 +58,7 @@ define(function(require) {
 			this.listenTo(Radio.message, 'messagesview:message:next', this.selectNextMessage);
 			this.listenTo(Radio.message, 'messagesview:message:prev', this.selectPreviousMessage);
 		},
-		onRender: function() {
+		_bindScrollEvents: function() {
 			this.$scrollContainer = this.$el.parent();
 			this.$scrollContainer.scroll(_.bind(this.onScroll, this));
 		},

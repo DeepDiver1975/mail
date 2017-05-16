@@ -61,11 +61,14 @@ before_install:
   - make install-composer-deps
   - make start-imap-docker
   - cd ..
-  - git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $CORE_BRANCH core
+  - git clone https://github.com/owncloud/core.git --recursive --depth 1 -b $CORE_BRANCH core
   - mv mail core/apps/
 
 before_script:
   # Set up core
+  - cd core
+  - make
+  - cd ..
   - php -f core/occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database $DB --database-pass=''
 
   # Set up app
@@ -83,11 +86,6 @@ before_script:
   - if [[ "$PHP_COVERAGE" = "FALSE" ]]; then phpenv config-rm xdebug.ini; fi
 
 script:
-  # Check info.xml schema validity
-  - wget https://apps.nextcloud.com/schema/apps/info.xsd
-  - xmllint appinfo/info.xml --schema info.xsd --noout
-  - rm info.xsd
-
   # Check PHP syntax errors
   - find . -name \*.php -not -path './vendor/*' -exec php -l "{}" \;
 
@@ -110,8 +108,6 @@ script:
   - cd ..
   - if [[ "$PACKAGE" = "TRUE" ]]; then make appstore; fi
 
-  # Upload the nightly to ftp server
-  - if [[ "$NIGHTLY" = "TRUE" ]]; then curl --ftp-create-dirs -T /home/travis/build/nextcloud/core/apps/mail/build/artifacts/mail.tar.gz -u $FTP_LOGIN:$FTP_PW ftp://upload.portknox.de/htdocs/mail/nextcloud_mail_nightly_build_$(date +%Y-%m-%d).tar.gz; fi
 
 matrix:
   include:

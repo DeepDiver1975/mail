@@ -1,36 +1,22 @@
-# Nextcloud Mail
+# ownCloud Mail
 
-![Downloads](https://img.shields.io/github/downloads/nextcloud/mail/total.svg)
-[![Build Status](https://travis-ci.org/nextcloud/mail.svg?branch=master)](https://travis-ci.org/nextcloud/mail)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nextcloud/mail/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nextcloud/mail/?branch=master)
-[![PHP Coverage](https://scrutinizer-ci.com/g/nextcloud/mail/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/nextcloud/mail/?branch=master)
-[![JavaScript Coverage](https://coveralls.io/repos/github/nextcloud/mail/badge.svg)](https://coveralls.io/github/nextcloud/mail)
-[![Bountysource](https://img.shields.io/bountysource/team/nextcloud/activity.svg?maxAge=2592000)](https://www.bountysource.com/teams/nextcloud/issues?tracker_ids=44154351)
+![Downloads](https://img.shields.io/github/downloads/DeepDiver1975/mail/total.svg)
+[![Build Status](https://travis-ci.org/DeepDiver1975/mail.svg?branch=master)](https://travis-ci.org/DeepDiver1975/mail)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/DeepDiver1975/mail/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DeepDiver1975/mail/?branch=master)
+[![PHP Coverage](https://scrutinizer-ci.com/g/DeepDiver1975/mail/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/DeepDiver1975/mail/?branch=master)
+[![JavaScript Coverage](https://coveralls.io/repos/github/DeepDiver1975/mail/badge.svg)](https://coveralls.io/github/DeepDiver1975/mail)
 
-**An email app for [Nextcloud](https://nextcloud.com)**
+**An email app for [ownCloud](https://owncloud.org)**
 
 ![](screenshots/mail.png)
 
 
 ## Why is this so awesome?
 
-* :rocket: **Integration with other Nextcloud apps!** Currently Contacts, Calendar & Files – more to come.
+* :rocket: **Integration with other ownCloud apps!** Currently Contacts, Calendar & Files – more to come.
 * :inbox_tray: **Multiple mail accounts!** Personal and company account? No problem, and a nice unified inbox.
 * :lock: **Send & receive encrypted emails!** Using the great [Mailvelope](https://mailvelope.com) browser extension.
 * :see_no_evil: **We’re not reinventing the wheel!** Based on the great [Horde](http://horde.org) libraries.
-
-And in the works for the [coming versions](https://github.com/nextcloud/mail/milestones/):
-* :books: Proper grouping of message threads
-* :zap: Caching to make everything faster
-* :paperclip: Even better attachment support
-* :package: Folder management & moving mails
-
-## Installation
-
-In your Nextcloud, simply navigate to »Apps«, choose the category »Productivity«, find the Mail app and enable it.
-Then open the Mail app from the app menu. Put in your email account credentials and off you go!
-
-If you experience any issues or have enhancement suggestions you can report them in our [issue tracker](https://github.com/nextcloud/mail/issues). Please follow the [issue template](https://raw.githubusercontent.com/nextcloud/mail/master/issue_template.md) so we get the info we need to be able to debug and fix the problem. Thanks!
 
 ## Usage
 
@@ -60,12 +46,6 @@ Speed up your Mail experience by using keyboard shortcuts.
 | Newer message | <kbd>K</kbd> or <kbd>←</kbd> |
 | Older message | <kbd>J</kbd> or <kbd>→</kbd> |
 
-## Maintainers
-
-[Christoph Wurst](https://github.com/ChristophWurst), [Jan-Christoph Borchardt](https://github.com/jancborchardt), [Steffen Lindner](https://github.com/Gomez) [and many more](https://github.com/nextcloud/mail/graphs/contributors)
-
-If you’d like to join, just go through the [issue list](https://github.com/nextcloud/mail/issues) and fix some. :)
-
 ## Troubleshooting
 
 ### Gmail
@@ -74,11 +54,11 @@ If you can not access your Gmail account use https://accounts.google.com/Display
 
 ### Outlook.com
 
-If you can not access your Outlook.com account try to enable the 'Two-Factor Verification' (https://account.live.com/proofs/Manage) and setup an app password (https://account.live.com/proofs/AppPassword), which you then use for the Nextcloud Mail app.
+If you can not access your Outlook.com account try to enable the 'Two-Factor Verification' (https://account.live.com/proofs/Manage) and setup an app password (https://account.live.com/proofs/AppPassword), which you then use for the ownCloud Mail app.
 
 ### Dovecot IMAP
 
-If your Dovecot IMAP server prefixes all folders with `INBOX`, Nextcloud Mail does not work correctly.
+If your Dovecot IMAP server prefixes all folders with `INBOX`, ownCloud Mail does not work correctly.
 
 Check `/etc/dovecot/dovecot.conf`:
 
@@ -96,23 +76,13 @@ namespace inbox {
 
 ## Developer setup info
 
-Just clone this repo into your apps directory (Nextcloud server installation needed). Additionally,  [nodejs and npm](https://nodejs.org/en/download/package-manager/) are needed for installing JavaScript dependencies.
+Just clone this repo into your apps directory (ownCloud server installation needed). Additionally,  [nodejs and npm](https://nodejs.org/en/download/package-manager/) are needed for installing JavaScript dependencies.
 
 Once node and npm are installed, PHP and JavaScript dependencies can be installed by running
 ```bash
 make install-composer-deps
 make optimize-js
 ```
-
-### Nightly builds
-
-Instead of setting everything up manually, you can just [download the nightly builds](https://nightly.portknox.net/mail/?C=M;O=D) instead. These builds are updated every 24 hours, and are pre-configured with all the needed dependencies.
-
-1. Download
-2. Extract the tar archive to 'path-to-nextcloud/apps'
-3. Navigate to »Apps«, choose the category »Productivity«, find the Mail app and enable it.
-
-The nightly builds are provided by [Portknox.net](https://portknox.net)
 
 ### Resetting the app
 Connect to your database and run the following commands (`oc_` is the default table prefix):
@@ -129,7 +99,7 @@ DROP TABLE oc_mail_collected_addresses;
 Certain advanced or experimental features need to be specifically enabled in your `config.php`:
 
 ### Debug mode
-You can enable IMAP and SMTP backend logging. A horde_imap.log for IMAP and horde_smtp.log for SMTP will appear in the same directory as your nextcloud.log.
+You can enable IMAP and SMTP backend logging. A horde_imap.log for IMAP and horde_smtp.log for SMTP will appear in the same directory as your owncloud.log.
 #### IMAP logging:
 ```php
 'app.mail.imaplog.enabled' => true
